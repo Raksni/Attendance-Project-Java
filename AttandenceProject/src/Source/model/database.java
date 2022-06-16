@@ -521,14 +521,8 @@ public class database implements Serializable{
         String sql ="";
         try{
             
-            if(d.equals("") && (!s.equals("")) && k.equals("")){
-                sql = "SELECT * FROM attendence WHERE subjectid ='"+s+"'";
-            }else if(d.equals("") && s.equals("")){
-                sql = "SELECT * FROM attendence";
-            }else if((!d.equals("")) && s.equals("")){
-                sql = "SELECT * FROM attendence WHERE date='"+d+"'";
-            }else if((!d.equals("")) && (!s.equals("")) && (k.equals(""))){
-                sql = "SELECT * FROM attendence WHERE date='"+d+"' AND subjectid ='"+s+"'";
+            if(d.isBlank()){
+                sql = "SELECT * FROM attendence WHERE classname ='"+k+"' AND subjectid ='"+s+"'";
             }else{
                 sql = "SELECT * FROM attendence WHERE classname ='"+k+"' AND date='"+d+"' AND subjectid ='"+s+"'";
             }                

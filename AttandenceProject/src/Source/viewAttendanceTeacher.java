@@ -38,6 +38,29 @@ public class viewAttendanceTeacher extends javax.swing.JInternalFrame {
         initComponents();        
         tampil_subject(tnip.getText());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String d ="";
+        if(date.getDate() != null){
+            d = sdf.format(date.getDate());
+        }   
+        
+        String k = "";
+            String s ="";
+        try{            
+            
+            if(kelas.getSelectedIndex()!=-1){
+                k=kelas.getSelectedItem().toString();
+            }
+            if(subject.getSelectedIndex()!=-1){           
+                s= database.getInstance().getSubjectId(subject.getSelectedItem().toString());
+            }
+            if((!s.isBlank()) && (!k.isBlank())){
+                loadTableData(d,s,k);
+            }
+            
+          }catch(SQLException e){
+            System.err.println(e);
+            JOptionPane.showMessageDialog(this, "Gagal mengambil data table", "Gagal", JOptionPane.ERROR_MESSAGE);
+        }
 //        subject.setSelectedIndex(1);
 //        String d = "";
 //            if(date.getDate() == null){
@@ -158,7 +181,7 @@ public class viewAttendanceTeacher extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(270, 80, 150, 30);
 
-        subject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---Pilih Mata Kuliah---"}));
+        subject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         subject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subjectActionPerformed(evt);
@@ -278,32 +301,29 @@ public class viewAttendanceTeacher extends javax.swing.JInternalFrame {
 
         // TODO add your handling code here:
         String d = "";
-            if(date.getDate() == null){
-                d = "";
-            }else{
+            if(date.getDate() != null){
                 d = sdf.format(date.getDate());
             }        
             String k = "";
-            String s ="";
+            String s="";
         try{            
             
-            if(kelas.getSelectedIndex()==-1){
-                k="";
-            }else{
+            if(kelas.getSelectedIndex()!=-1){
                 k=kelas.getSelectedItem().toString();
-            }if(subject.getSelectedIndex()==0){
-                s="";
-            }else{            
-                s= database.getInstance().getSubjectId(subject.getSelectedItem().toString());
             }
-            if(k.equals("")||s.equals("")){   
-                JOptionPane.showMessageDialog(this, "Subject dan Kelas tidak boleh kosong");
+            
+            if(subject.getSelectedIndex()!=-1){
+                s = database.getInstance().getSubjectId(subject.getSelectedItem().toString());
+            }
+            
+            if(s.isBlank() || k.isBlank()){   
+                JOptionPane.showMessageDialog(this, "Silahkan pilih subject dan kelas terlebih dahulu");
             }else{
                 loadTableData(d,s,k);
             }
         }catch(SQLException e){
             System.err.println(e);
-            JOptionPane.showMessageDialog(this, "Gagal mengambil data table", "Gagal", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Gagal mengambil data", "Gagal", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_getTableActionPerformed
 

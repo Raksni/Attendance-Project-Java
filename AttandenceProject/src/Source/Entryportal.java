@@ -1,6 +1,7 @@
 package Source;
 
 
+import Source.model.CreateUser;
 import Source.model.Subject;
 import Source.model.database;
 import Source.model.User;
@@ -168,39 +169,49 @@ public class Entryportal extends javax.swing.JFrame {
             User user = new User();
             user.setUsername(Utext.getText());
             user.setPassword(Upass.getText());
-            String type = database.getInstance().getLogin(user);            
+            user.setUsertype(database.getInstance().getLogin(user));
+            //String type = database.getInstance().getLogin(user);            
             
-            if(null==type){
-                JOptionPane.showMessageDialog(null, "Username Tidak Ditemukan");
-            }else switch (type) {
-                case "Administrator":
-                    {
-                        AdminFrame f2 = new AdminFrame();
-                        f2.setVisible(true);
-                        dispose();
-                        break;
-                    }
-                case "Teacher":
-                    {
-                        TeacherFrame f2 = new TeacherFrame();
-                        teacher teach = database.getInstance().getTeacherid(Utext.getText());
-                        
-                        f2.tnip.setText(teach.getTeacherid());
-                        f2.tname.setText(teach.getTeachername());
-                        
-                            for(Subject sub:database.getInstance().getTeacherSubject(f2.tnip.getText())){
-                                
-                               f2.subject.addItem(sub.getSubjectname());
-                            }
-//            }
-                        f2.setVisible(true);
-                        dispose();
-                        break;
-                    }
-                default:
-                    JOptionPane.showMessageDialog(null, "Username atau Password salah");
-                    break;
+            if(user.getUsername().isBlank() || user.getPassword().isBlank()){
+                JOptionPane.showMessageDialog(null, "Username atau Password tidak boleh kosong");
+            }else{
+                CreateUser cu = new CreateUser();
+                cu.Create(user);
+                
+                dispose();
             }
+            
+//            if(null==type){
+//                JOptionPane.showMessageDialog(null, "Username Tidak Ditemukan");
+//            }else switch (type) {
+//                case "Administrator":
+//                    {
+//                        AdminFrame f2 = new AdminFrame();
+//                        f2.setVisible(true);
+//                        dispose();
+//                        break;
+//                    }
+//                case "Teacher":
+//                    {
+//                        TeacherFrame f2 = new TeacherFrame();
+//                        teacher teach = database.getInstance().getTeacherid(Utext.getText());
+//                        
+//                        f2.tnip.setText(teach.getTeacherid());
+//                        f2.tname.setText(teach.getTeachername());
+//                        
+//                            for(Subject sub:database.getInstance().getTeacherSubject(f2.tnip.getText())){
+//                                
+//                               f2.subject.addItem(sub.getSubjectname());
+//                            }
+////            }
+//                        f2.setVisible(true);
+//                        dispose();
+//                        break;
+//                    }
+//                default:
+//                    JOptionPane.showMessageDialog(null, "Username atau Password salah");
+//                    break;
+//            }
             
         } catch (Exception e) {
             System.err.println(e);

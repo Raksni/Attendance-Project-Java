@@ -482,7 +482,7 @@ public class TeacherFrame extends javax.swing.JFrame {
         try{
             for(Subject sub:database.getInstance().getTeacherSubject(f10.tnip.getText())){                               
                 f10.subject.addItem(sub.getSubjectname());
-                f10.subject.setSelectedIndex(1);
+                f10.subject.setSelectedIndex(0);
                 f10.kelas.setSelectedIndex(0);
             }
         }catch(SQLException e){
