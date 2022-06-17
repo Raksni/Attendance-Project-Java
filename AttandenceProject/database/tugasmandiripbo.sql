@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2022 at 04:34 PM
+-- Generation Time: Jun 17, 2022 at 07:46 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -39,14 +39,7 @@ CREATE TABLE `attendance_batch` (
 --
 
 INSERT INTO `attendance_batch` (`date`, `classname`, `subjectid`, `session`) VALUES
-('2022-06-06', '1KS1', 'basdat', 'Session 3'),
-('2022-06-06', '2KS1', 'komstat', 'Session 1'),
-('2022-06-06', '2KS1', 'pbo', 'Session 4'),
-('2022-06-06', '2KS1', 'pbw', 'Session 2'),
-('2022-06-08', '2KS1', 'anareg', 'Session 3'),
-('2022-06-08', '2KS1', 'komstat', 'Session 1'),
-('2022-06-08', '2KS2', 'anareg', 'Session 1'),
-('2022-06-08', '2KS2', 'komstat', 'Session 3');
+('2022-06-17', '2KS1', 'pbo', 'Session 1');
 
 -- --------------------------------------------------------
 
@@ -68,8 +61,7 @@ CREATE TABLE `attendence` (
 --
 
 INSERT INTO `attendence` (`date`, `status`, `studentid`, `classname`, `subjectid`, `session`) VALUES
-('2022-06-08', 'Present', '222011404', '2KS1', 'anareg', 'Session 3'),
-('2022-06-08', 'Sick', '222011405', '2KS2', 'anareg', 'Session 1');
+('2022-06-17', 'Late 20 Menit', '222011404', '2KS1', 'pbo', 'Session 1');
 
 -- --------------------------------------------------------
 
@@ -87,7 +79,7 @@ CREATE TABLE `classes` (
 
 INSERT INTO `classes` (`classname`) VALUES
 ('1KS1'),
-('1KS2'),
+('1KS3'),
 ('2KS1'),
 ('2KS2');
 
@@ -109,8 +101,7 @@ CREATE TABLE `class_subject` (
 INSERT INTO `class_subject` (`classname`, `subjectid`) VALUES
 ('1KS1', 'alin'),
 ('1KS1', 'basdat'),
-('1KS2', 'alin'),
-('1KS2', 'basdat'),
+('1KS3', 'basdat'),
 ('2KS1', 'anareg'),
 ('2KS1', 'komstat'),
 ('2KS1', 'metnum'),
@@ -150,8 +141,7 @@ INSERT INTO `login` (`username`, `password`, `usertype`) VALUES
 ('rajuh', '12345', 'Teacher'),
 ('rizda', '12345', 'Teacher'),
 ('sela', '12345', 'Teacher'),
-('ugu', '12344', 'Teacher'),
-('user', '12345', 'Teacher');
+('ugu', '12345', 'Teacher');
 
 -- --------------------------------------------------------
 
@@ -173,7 +163,8 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`studentid`, `studentname`, `dept`, `semester`, `classname`) VALUES
 ('222011404', 'Wa Ode Raksni Dumpatua', 'D4 Komputasi', 4, '2KS1'),
-('222011405', 'La Ode Delok Jumsya', 'D4 Komputasi', 4, '2KS2');
+('222011405', 'La Ode Delok Jumsya', 'D4 Komputasi', 4, '2KS2'),
+('22211892', 'Wa Ode Rizda Dempalas', 'D4 Komputasi', 2, '1KS1');
 
 -- --------------------------------------------------------
 
@@ -219,7 +210,6 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`teacherid`, `teachername`, `Login_username`) VALUES
-('1', 'Raksni', 'user'),
 ('2', 'Rizda', 'rizda'),
 ('3', 'Sela', 'sela'),
 ('4', 'Rajuh', 'rajuh'),
@@ -243,20 +233,16 @@ CREATE TABLE `teaches` (
 --
 
 INSERT INTO `teaches` (`teacher_teacherid`, `classname`, `subjectid`) VALUES
-('1', '1KS1', 'basdat'),
-('1', '1KS2', 'basdat'),
-('1', '2KS1', 'pbw'),
-('1', '2KS2', 'pbw'),
 ('2', '2KS1', 'pbo'),
 ('2', '2KS2', 'pbo'),
 ('3', '2KS1', 'anareg'),
 ('3', '2KS2', 'anareg'),
 ('4', '1KS1', 'alin'),
-('4', '1KS2', 'alin'),
 ('4', '2KS1', 'komstat'),
 ('4', '2KS2', 'komstat'),
 ('5', '2KS1', 'metnum'),
 ('5', '2KS2', 'metnum'),
+('5', '2KS1', 'metsur'),
 ('6', '2KS1', 'pos');
 
 --

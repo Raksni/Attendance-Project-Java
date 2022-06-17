@@ -548,10 +548,10 @@ public class TeacherFrame extends javax.swing.JFrame {
             ket.addItem("Menit");
             ket.addItem("Detik");
         }else{
+            ket.removeAllItems();
             late.setVisible(false);
             ket.setVisible(false);
-            late.setEditable(false);
-            ket.removeAllItems();
+            late.setEditable(false);            
         }
     }//GEN-LAST:event_statusActionPerformed
 

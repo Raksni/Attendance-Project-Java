@@ -80,36 +80,6 @@ public class addTeacherFormin extends javax.swing.JInternalFrame {
                     
                 
             }
-//               List<teacher> teach = database.getInstance().getTeacherList();
-//               int j=0;
-//               int k =0;
-//               for(int i = 0; i<teach.size();i++){
-//                   String n="";                   
-//                   
-//                        if((j+1)<=teach.size()){
-//                            n = teach.get(i+1).getSubject().getSubjectid();
-////                            
-//                        }if(teach.get(i).getSubject().getSubjectid().equals(n)){
-//                            dtm.addRow(new Object[]{teach.get(i).getTeacherid(),teach.get(i).getTeachername(),teach.get(i).getSubject().getSubjectname(),teach.get(i).getKelass()});
-//                            //System.out.println("Teacher :"+teach.get(i).getTeacherid()+teach.get(i).getTeachername()+teach.get(i).getSubject().getSubjectname()+teach.get(i).getKelass());
-//                            teach.remove(i);
-//                            j=j+1;
-//                            
-//                        }else{
-//                            //k=k+1; 
-//                            //System.out.println("I+j " +(i+j)+"> teach.size"+teach.size());
-//                            if((i+k)<teach.size()){
-//                                //System.out.println("Teacher :"+teach.get(i).getTeacherid()+teach.get(i).getTeachername()+teach.get(i).getSubject().getSubjectname()+teach.get(i).getKelass());
-//                                dtm.addRow(new Object[]{teach.get(i).getTeacherid(),teach.get(i).getTeachername(),teach.get(i).getSubject().getSubjectname(),teach.get(i).getKelass()});
-//                            }
-//                            if(j%2 ==0){
-//                                k=0;
-//                                j=j+1;
-//                            }else{
-//                                k=2;
-//                            }
-//                        }                       
-//               }
         } catch (SQLException ex) {
             System.err.println(ex);
             JOptionPane.showMessageDialog(this, "Gagal mengambil data table", "Gagal", JOptionPane.ERROR_MESSAGE);
