@@ -50,7 +50,9 @@ public class addTeacherFormin extends javax.swing.JInternalFrame {
         password.setText("");
         username.setText("");
         subject.setSelectedIndex(0);
-        kelas.setSelectedIndex(-1);        
+        kelas.setSelectedIndex(-1);  
+        id.setEditable(true);
+        username.setEditable(true);
     }
     
     private void loadTableData(){
@@ -66,8 +68,8 @@ public class addTeacherFormin extends javax.swing.JInternalFrame {
             List<teacher> teach = database.getInstance().getTeacherList();
             dtm.addRow(new Object[]{teach.get(0).getTeacherid(),teach.get(0).getTeachername(),teach.get(0).getSubject().getSubjectname(),teach.get(0).getKelass()});
             for(int i=1; i<teach.size();i++){
-                if(i!=(teach.size()-1)){
-                    String n = teach.get(i+1).getSubject().getSubjectid();
+                if(i!=(teach.size())){
+                    String n = teach.get(i-1).getSubject().getSubjectid();
                     if(teach.get(i).getSubject().getSubjectid().equals(n)){                    
                     }else{
                         dtm.addRow(new Object[]{teach.get(i).getTeacherid(),teach.get(i).getTeachername(),teach.get(i).getSubject().getSubjectname(),teach.get(i).getKelass()});
@@ -357,9 +359,6 @@ public class addTeacherFormin extends javax.swing.JInternalFrame {
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
         // TODO add your handling code here:
         clearForm();
-        id.setEditable(true);
-        name.setEditable(true);
-        username.setEditable(true);
         loadTableData();
     }//GEN-LAST:event_clearActionPerformed
 
@@ -416,9 +415,6 @@ public class addTeacherFormin extends javax.swing.JInternalFrame {
         }
         loadTableData();
         clearForm();
-        id.setEditable(true);
-        name.setEditable(true);
-        username.setEditable(true);
     }//GEN-LAST:event_updateActionPerformed
 
     private void teachertableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teachertableMouseClicked
@@ -441,7 +437,6 @@ public class addTeacherFormin extends javax.swing.JInternalFrame {
             System.out.println(e);
         }
         id.setEditable(false);
-        name.setEditable(false);
         username.setEditable(false);
         
     }//GEN-LAST:event_teachertableMouseClicked
@@ -462,14 +457,9 @@ public class addTeacherFormin extends javax.swing.JInternalFrame {
                 System.out.println(e);
                 JOptionPane.showMessageDialog(this, "Gagal menghapus data", "Gagal", JOptionPane.ERROR_MESSAGE);
             }
-        }else{
-            
         }
         loadTableData();
         clearForm();
-        id.setEditable(true);
-        name.setEditable(true);
-        username.setEditable(true);
     }//GEN-LAST:event_deleteActionPerformed
 
     private void delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete1ActionPerformed
@@ -499,9 +489,6 @@ public class addTeacherFormin extends javax.swing.JInternalFrame {
         
         loadTableData();
         clearForm();
-        id.setEditable(true);
-        name.setEditable(true);
-        username.setEditable(true);
     }//GEN-LAST:event_delete1ActionPerformed
 
 

@@ -49,7 +49,7 @@ public class addStudentFormin extends javax.swing.JInternalFrame {
         semester.setText("");
         kelas.setSelectedIndex(-1);
         dept.setSelectedIndex(-1);
-        
+        id.setEditable(true);
     }
     
     private void loadTableData(){
@@ -314,8 +314,6 @@ public class addStudentFormin extends javax.swing.JInternalFrame {
         }
         loadTableData();
         clearForm();
-        id.setEditable(true);
-        name.setEditable(true);
     }//GEN-LAST:event_updateActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -348,8 +346,6 @@ public class addStudentFormin extends javax.swing.JInternalFrame {
                 }
                 loadTableData();
                 clearForm();
-                id.setEditable(true);
-                name.setEditable(true);
         }
         else{
            // dispose();

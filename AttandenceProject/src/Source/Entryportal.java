@@ -215,14 +215,14 @@ public class Entryportal extends javax.swing.JFrame {
             
         } catch (Exception e) {
             System.err.println(e);
-            JOptionPane.showMessageDialog(this, "Gagal menyimpan data pada kelas ", "Gagal", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Gagal login", "Gagal", JOptionPane.ERROR_MESSAGE);
 
         }  
     }//GEN-LAST:event_loginActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         // TODO add your handling code here:
-        System.exit(1);
+        dispose();
     }//GEN-LAST:event_cancelActionPerformed
 
     /**

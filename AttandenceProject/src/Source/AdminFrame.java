@@ -447,13 +447,18 @@ public class AdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         kelas k = new kelas();
         k.setClassname(name.getText());
-        try{
-            database.getInstance().deleteClass(k);
-            JOptionPane.showMessageDialog(this, "Sukses Menghapus Data");
-        }catch(SQLException e){
-            System.out.println(e);
-            JOptionPane.showMessageDialog(this, "Gagal mengambil data", "Gagal", JOptionPane.ERROR_MESSAGE);
-        }
+        int op = JOptionPane.showConfirmDialog(null,"Do you really want to delete teacher?","confirm",0);
+        
+        if(op == 0)
+        { 
+            try{
+                database.getInstance().deleteClass(k);
+                JOptionPane.showMessageDialog(this, "Sukses Menghapus Data");
+            }catch(SQLException e){
+                System.out.println(e);
+                JOptionPane.showMessageDialog(this, "Gagal menghapus data", "Gagal", JOptionPane.ERROR_MESSAGE);
+            }
+        }        
         loadTableData();
     }//GEN-LAST:event_deleteActionPerformed
 
