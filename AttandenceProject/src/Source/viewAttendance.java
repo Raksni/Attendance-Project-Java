@@ -311,14 +311,18 @@ public class viewAttendance extends javax.swing.JInternalFrame {
                 FileWriter fw = new FileWriter(f);
                 BufferedWriter b = new BufferedWriter(fw);
 
-                b.write("Date"+","+"NIM"+","+"Nama"+","+"Kelas"+","+"Mata Kuliah"+","+"Sesi"+","+"Status Kehadiran"+",");
+                b.write("Date"+","+"NIM"+","+"Nama"+","+"Kelas"+","+"Mata Kuliah"+","+"Sesi"+","+"Status Kehadiran");
                 b.newLine();
 
                 for(int i=0; i<datatable.getRowCount();i++){
-                   for(int k=0; k<datatable.getColumnCount();k++){
-                       b.write(datatable.getValueAt(i,k).toString()+",");
-                   }
-                   b.newLine();
+                    for(int k=0; k<datatable.getColumnCount();k++){
+                        if(k!=datatable.getColumnCount()-1){
+                            b.write(datatable.getValueAt(i,k).toString()+",");
+                        }else{
+                            b.write(datatable.getValueAt(i,k).toString());
+                        }
+                    }
+                    b.newLine();
                 }
 
                 b.close();

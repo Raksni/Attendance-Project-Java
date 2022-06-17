@@ -437,7 +437,13 @@ public class TeacherFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         nim.setText(table.getValueAt(table.getSelectedRow(),0).toString());
         nama.setText(table.getValueAt(table.getSelectedRow(),1).toString());
-        status.setSelectedItem(table.getValueAt(table.getSelectedRow(),2).toString());
+        String[] stat = table.getValueAt(table.getSelectedRow(),2).toString().split(" ");
+        status.setSelectedItem(stat[0]);
+        System.out.println(stat[0]);
+        if(status.getSelectedItem()=="Late"){
+            late.setText(stat[1]);
+            ket.setSelectedItem(stat[2]);
+        }
     }//GEN-LAST:event_tableMouseClicked
 
     private void takeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takeActionPerformed
@@ -454,6 +460,8 @@ public class TeacherFrame extends javax.swing.JFrame {
         if(status.getSelectedIndex()==4){
             String stat = "Late "+late.getText()+" "+ket.getSelectedItem().toString();
             att.setStatus(stat);
+        }else if(status.getSelectedIndex()==0){
+            att.setStatus("");
         }else{
             att.setStatus(status.getSelectedItem().toString());
         }
@@ -467,6 +475,7 @@ public class TeacherFrame extends javax.swing.JFrame {
             att.setSubject(s);
             att.setMahasiswa(mhs);
             database.getInstance().updateAttendance(att);
+            JOptionPane.showMessageDialog(this, "Sukses menyimpan perubahan");
         }catch(SQLException e){
             System.err.println(e);
             JOptionPane.showMessageDialog(this, "Gagal mengambil kehadiran", "Gagal", JOptionPane.ERROR_MESSAGE);
@@ -539,6 +548,9 @@ public class TeacherFrame extends javax.swing.JFrame {
             ket.addItem("Menit");
             ket.addItem("Detik");
         }else{
+            late.setVisible(false);
+            ket.setVisible(false);
+            late.setEditable(false);
             ket.removeAllItems();
         }
     }//GEN-LAST:event_statusActionPerformed

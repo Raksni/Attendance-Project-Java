@@ -477,7 +477,7 @@ public class addTeacherFormin extends javax.swing.JInternalFrame {
                 sub.setSubjectid(database.getInstance().getSubjectId(sub.getSubjectname()));
                 guru.setSubject(sub);
                 database.getInstance().deleteTeacherSubject(guru);
-                JOptionPane.showMessageDialog(this, "Sukses Tersimpan");
+                JOptionPane.showMessageDialog(this, "Sukses Terhapus");
             }catch(SQLException e){
                 System.out.println(e);
                 JOptionPane.showMessageDialog(this, "Gagal menghapus data", "Gagal", JOptionPane.ERROR_MESSAGE);

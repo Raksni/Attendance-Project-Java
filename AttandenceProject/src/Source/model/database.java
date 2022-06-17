@@ -314,8 +314,7 @@ public class database implements Serializable{
     public void updateTeacherClass(teacher guru) throws SQLException{
         Connection conn = getConnection();
         try{
-            String sql1 = "UPDATE teaches SET classname = ?";
-            sql1+=" WHERE subjectid=? AND teacher_teacherid= ?";
+            String sql1 = "UPDATE teaches SET classname = ? WHERE subjectid=? AND teacher_teacherid= ?";
             
             PreparedStatement pstmt = conn.prepareStatement(sql1);
             pstmt.setString(1, guru.getKelas());     
@@ -330,8 +329,7 @@ public class database implements Serializable{
     public void updateTeacherLogin(teacher guru) throws SQLException{
         Connection conn = getConnection();
         try{
-            String sql2 = "UPDATE login SET password = ?";
-            sql2+=" WHERE username= ?";            
+            String sql2 = "UPDATE login SET password = ? WHERE username= ?";            
             PreparedStatement pstmt2 = conn.prepareStatement(sql2);
             pstmt2.setString(1, guru.getPassword());            
             pstmt2.setString(2, guru.getUsername());
@@ -351,7 +349,11 @@ public class database implements Serializable{
                 if(t.get(i).getTeacherid().equals(guru.getTeacherid())){
                     System.out.println(guru.getTeacherid());
                     if(t.get(i).getSubject().getSubjectid().equals(guru.getSubject().getSubjectid())){
-                        if(!getTeacherClassName(t.get(i),t.get(i).getSubject()).equals(guru.getKelas())){                            
+                        System.out.println(guru.getSubject().getSubjectid());
+                        System.out.println(t.get(i).getSubject().getSubjectid());
+                        if(!getTeacherClassName(t.get(i),t.get(i).getSubject()).get(0).equals(guru.getKelas())){
+                            System.out.println(guru.getKelas());
+                            System.out.println(getTeacherClassName(t.get(i),t.get(i).getSubject()));
                             updateTeacherClass(guru);
                         }
                     }
@@ -567,7 +569,7 @@ public class database implements Serializable{
         try{
             if(d.equals("") && s.equals("") && k.equals("")){
                 sql = "SELECT * FROM attendence";
-            }else if(s.equals("") && k.equals("")){
+            }else if((!d.isBlank()) && s.equals("") && k.equals("")){
                 sql = "SELECT * FROM attendence WHERE date ='"+d+"'";
             }else if(d.equals("") && k.equals("")){
                 sql = "SELECT * FROM attendence WHERE subjectid ='"+s+"'";

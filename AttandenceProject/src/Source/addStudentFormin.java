@@ -325,8 +325,6 @@ public class addStudentFormin extends javax.swing.JInternalFrame {
         semester.setText(jTable1.getValueAt(jTable1.getSelectedRow(),4).toString());
         
         id.setEditable(false);
-        name.setEditable(false);
-        
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
