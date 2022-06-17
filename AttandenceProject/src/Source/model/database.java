@@ -115,12 +115,12 @@ public class database implements Serializable{
         }
     }
     
-    public void deleteClass(kelas kelas) throws SQLException{
+    public void deleteClass(kelas Kelas) throws SQLException{
         Connection conn = getConnection();
         try{
             String sql="DELETE FROM classes WHERE classname=?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, kelas.getClassname());
+            pstmt.setString(1, Kelas.getClassname());
             pstmt.executeUpdate();
         } 
         catch(SQLException ex){
@@ -129,7 +129,7 @@ public class database implements Serializable{
         try{
             String sql="DELETE FROM class_subject WHERE classname=?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, kelas.getClassname());
+            pstmt.setString(1, Kelas.getClassname());
             pstmt.executeUpdate();
         } 
         catch(SQLException ex){
@@ -137,7 +137,7 @@ public class database implements Serializable{
         }try{
             String sql="DELETE FROM student WHERE classname=?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, kelas.getClassname());
+            pstmt.setString(1, Kelas.getClassname());
             pstmt.executeUpdate();
         } 
         catch(SQLException ex){
@@ -145,7 +145,7 @@ public class database implements Serializable{
         }try{
             String sql="DELETE FROM teaches WHERE classname=?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, kelas.getClassname());
+            pstmt.setString(1, Kelas.getClassname());
             pstmt.executeUpdate();
         } 
         catch(SQLException ex){
@@ -198,8 +198,7 @@ public class database implements Serializable{
         }
         
     }
-    
-//    //DELETE DATA
+ 
     public void deleteStudent(Mahasiswa mhs) throws SQLException
     {
         
@@ -372,12 +371,12 @@ public class database implements Serializable{
         }      
     }
     
-    public void deleteTeacher(teacher teacher) throws SQLException{
+    public void deleteTeacher(teacher teach) throws SQLException{
         Connection conn = getConnection();
         try{
             String sql="DELETE FROM teacher WHERE teacherid=?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, teacher.getTeacherid());
+            pstmt.setString(1, teach.getTeacherid());
             pstmt.executeUpdate();
         } 
         catch(SQLException ex){
@@ -386,7 +385,7 @@ public class database implements Serializable{
         try{
             String sql="DELETE FROM teaches WHERE teacher_teacherid=?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, teacher.getTeacherid());
+            pstmt.setString(1, teach.getTeacherid());
             pstmt.executeUpdate();
         } 
         catch(SQLException ex){
@@ -394,7 +393,7 @@ public class database implements Serializable{
         }try{
             String sql="DELETE FROM login WHERE username=?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, teacher.getUsername());
+            pstmt.setString(1, teach.getUsername());
             pstmt.executeUpdate();
         } 
         catch(SQLException ex){
@@ -406,14 +405,14 @@ public class database implements Serializable{
         }
     }
     
-    public void deleteTeacherSubject(teacher teacher) throws SQLException{
+    public void deleteTeacherSubject(teacher teach) throws SQLException{
         Connection conn = getConnection();
         
         try{
             String sql="DELETE FROM teaches WHERE teacher_teacherid=? AND subjectid =?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, teacher.getTeacherid());
-            pstmt.setString(2, teacher.getSubject().getSubjectid());
+            pstmt.setString(1, teach.getTeacherid());
+            pstmt.setString(2, teach.getSubject().getSubjectid());
             pstmt.executeUpdate();
         } 
         catch(SQLException ex){
@@ -745,8 +744,6 @@ public class database implements Serializable{
         return s;
     }
     
-    
-    
     public String getSubjectName(String id) throws SQLException{
         String s="";
         Connection conn = getConnection();
@@ -811,8 +808,7 @@ public class database implements Serializable{
         }
         return teacherList;
     }
-      
-    
+         
     public List<Mahasiswa> getListMahasiswa() throws SQLException{
         List<Mahasiswa> mhsList = new ArrayList<>();
         Connection conn = getConnection();
@@ -863,27 +859,6 @@ public class database implements Serializable{
         return classList;
     }
     
-//    public List<String> getListSubjectName(String sub) throws SQLException{
-//        List<String> classList = new ArrayList<>();
-//        Connection conn = getConnection();
-//        try{
-//            String sql = "SELECT * FROM subject WHERE subjectid='"+sub+"'";
-//            Statement stmt = conn.createStatement();
-//            ResultSet rs = stmt.executeQuery(sql);
-//            while(rs.next()){
-//                String name = rs.getString("subjectname");
-//                classList.add(name);
-//            }
-//        }catch(SQLException ex){
-//            throw ex;
-//        } finally{
-//            if (conn!=null){
-//                conn.close();
-//            }
-//        }
-//        return classList;
-//    }
-    
     public List<String> getListSubjectClass(String id) throws SQLException{
         List<String> classList = new ArrayList<>();
         Connection conn = getConnection();
@@ -905,9 +880,7 @@ public class database implements Serializable{
         }
         return classList;
     }
-    
-    
-    
+     
     public String getSubjectId(String sub) throws SQLException{
         Connection conn = getConnection();
         String id="";
@@ -928,29 +901,6 @@ public class database implements Serializable{
         }
         return id;
     }
-    
-//    public String getIdSubject(String sub) throws SQLException{
-//        Connection conn = getConnection();
-//        String id="";
-//        try{
-//            String sq = "SELECT * FROM class_subject WHERE classname='"+sub+"'";
-//            Statement stmt = conn.createStatement();
-//            ResultSet r = stmt.executeQuery(sq);
-//            while(r.next()){
-//                id = r.getString("subjectid");
-//            }
-//            
-//        }catch(SQLException ex){
-//            throw ex;
-//        } finally{
-//            if (conn!=null){
-//                conn.close();
-//            }
-//        }
-//        return id;
-//    }
-    
-    
     
     public List<String> getClassName(String sub) throws SQLException{
         
@@ -977,9 +927,7 @@ public class database implements Serializable{
         }
         return s;
     }
-    
-    
-    
+
     public List<String> getListClass() throws SQLException{
         List<String> classList=new ArrayList<>();
         Connection conn = getConnection();
@@ -1028,9 +976,7 @@ public class database implements Serializable{
 
         return subList;
     }
-    
-    
-    
+     
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:"+DB_TYPE+"://"+DB_HOST+":"+DB_PORT+"/"+DB_NAME,DB_USER,DB_PASS);
     }
